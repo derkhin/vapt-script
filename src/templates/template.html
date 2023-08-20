@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <div class="bg-gray-800 text-white w-1/5">
+        <div class="p-4">
+            <h2 class="text-2xl font-semibold">Sidebar</h2>
+        </div>
+        <ul class="py-2">
+            <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer" onclick="showDiv(1)">Option 1</li>
+            <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer" onclick="showDiv(2)">Option 2</li>
+            <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer" onclick="showDiv(3)">Option 3</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-grow p-8">
+        <div id="div1" class="hidden bg-white p-4 rounded shadow">Content for Option 1</div>
+        <div id="div2" class="hidden bg-white p-4 rounded shadow">Content for Option 2</div>
+        <div id="div3" class="hidden bg-white p-4 rounded shadow">Content for Option 3</div>
+    </div>
+
+    <script>
+        function showDiv(divNumber) {
+            hideAllDivs();
+            document.getElementById(`div${divNumber}`).style.display = 'block';
+        }
+
+        function hideAllDivs() {
+            const divs = document.querySelectorAll('[id^="div"]');
+            divs.forEach(div => {
+                div.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+
+</html>
