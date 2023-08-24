@@ -1,17 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Generated HTML</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1>User List</h1>
-    <ul>
-        {{#each users}}
-        <li>{{firstName}} {{lastName}}</li>
-        {{/each}}
-    </ul>
+
+<body class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <div class="bg-gray-800 text-white w-1/5">
+        <div class="p-4">
+            <h2 class="text-2xl font-semibold">Sidebar</h2>
+        </div>
+
+        {{#if data.[0].sidebar}}
+        <ul class="py-2">
+            {{#each data.[0].sidebar as |item index|}}
+            <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer" onclick="showDiv({{index}})">{{item}}</li>
+            {{/each}}
+        </ul>
+        {{/if}}
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-grow p-8">
+        <div id="div0" class="hidden bg-white p-4 rounded shadow">
+            <div>Subdomain</div>
+            <div>
+                {{#each myArray as |arrayItem index|}}
+                <span>{{arrayItem.index}}</span><span style="padding-left: 10px;">{{arrayItem.value}}</span><br />
+                {{/each}}
+            </div>
+        </div>
+        <div id="div1" class="hidden bg-white p-4 rounded shadow">Content for Option 2</div>
+        <div id="div2" class="hidden bg-white p-4 rounded shadow">Content for Option 3</div>
+    </div>
+
+    <script>
+        function showDiv(divNumber) {
+            hideAllDivs();
+            document.getElementById(`div${divNumber}`).style.display = 'block';
+        }
+
+        function hideAllDivs() {
+            const divs = document.querySelectorAll('[id^="div"]');
+            divs.forEach(div => {
+                div.style.display = 'none';
+            });
+        }
+    </script>
 </body>
 
 </html>
